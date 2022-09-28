@@ -1,0 +1,36 @@
+{
+  "name": "promotion-codes",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "formidable": "^1.2.2",
+    "fs": "0.0.1-security",
+    "http-errors": "~1.6.3",
+    "http-status-codes": "^1.4.0",
+    "jade": "~1.11.0",
+    "joi": "^17.6.1",
+    "joi-date-extensions": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^2.2.33",
+    "mongoose": "^5.8.3",
+    "mongoose-auto-increment": "^5.0.1",
+    "mongoose-long": "^0.2.1",
+    "mongoose-plugin-autoinc": "^1.1.9",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.4",
+    "path": "^0.12.7",
+    "pino": "^5.15.0",
+    "serve-favicon": "^2.5.0",
+    "update": "^0.7.4",
+    "util": "^0.12.3"
+  }
+}

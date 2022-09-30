@@ -13,7 +13,8 @@ const insertPromotionCodeData = async (reqPayload) => {
         logger.debug('insertPromotionCodeData() reqPayload: %j', reqPayload);
         const promotionCodeModel = db.model('promotionCodes');
         const promocodeData = await promotionCodeModel.find({
-            promocodeName: reqPayload.promocodeName
+            promocodeName: reqPayload.promocodeName,
+            deleted: false
         });
         if (promocodeData.length > 0) {
             return 'Promotion Code already exists.';

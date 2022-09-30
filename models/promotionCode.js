@@ -54,10 +54,6 @@ const PromotionCodesSchema = new Schema({
     },
 }, {
     versionKey: false
-}).index({
-    promocodeName: 1
-}, {
-    unique: true
 });
 
 PromotionCodesSchema.plugin(autoIncrement.plugin, {

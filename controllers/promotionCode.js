@@ -73,21 +73,21 @@ const editPromotionCodeData = async (req, res) => {
         if (Array.isArray(response) && response.length <= 0) {
             return res.status(httpStatusCode.OK).send(responseGenerators({}, httpStatusCode.OK, 'No data exist..!', true));
         } else if (response == true) {
-            return res.status(httpStatusCode.OK).send(responseGenerators({}, httpStatusCode.OK, 'Promotion code name already exists', true));
+            return res.status(httpStatusCode.OK).send(responseGenerators({}, httpStatusCode.OK, 'Promotion code name already exists.', true));
         }
-        return res.status(httpStatusCode.OK).send(responseGenerators(response, httpStatusCode.OK, 'Data updated successfully', false));
+        return res.status(httpStatusCode.OK).send(responseGenerators(response, httpStatusCode.OK, 'Data updated successfully.', false));
     } catch (error) {
         logger.warn(`Error while update data. Error: %j %s`, error, error);
-        return res.status(httpStatusCode.INTERNAL_SERVER_ERROR).send(responseGenerators({}, httpStatusCode.INTERNAL_SERVER_ERROR, 'Error while update data', true));
+        return res.status(httpStatusCode.INTERNAL_SERVER_ERROR).send(responseGenerators({}, httpStatusCode.INTERNAL_SERVER_ERROR, 'Error while update data.', true));
     }
 };
 
 const deletePromotionCodeData = async (req, res) => {
     try {
-        const promocodeId = Number(req.query.promocodeId);
+        const promocodeId = Number(req.params.promocodeId);
         const response = await promotionCodeService.deletePromotionCodeData(promocodeId);
         if (response && response.length <= 0) {
-            return res.status(httpStatusCode.OK).send(responseGenerators({}, httpStatusCode.OK, 'No data deleted', true));
+            return res.status(httpStatusCode.OK).send(responseGenerators({}, httpStatusCode.OK, 'No data exists..!', true));
         }
         return res.status(httpStatusCode.OK).send(responseGenerators(response, httpStatusCode.OK, 'Data deleted successfully', false));
     } catch (error) {

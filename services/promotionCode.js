@@ -16,7 +16,7 @@ const insertPromotionCodeData = async (reqPayload) => {
             promocodeName: reqPayload.promocodeName
         });
         if (promocodeData.length > 0) {
-            return 'Promotion Code already exists';
+            return 'Promotion Code already exists.';
         }
         const response = await promotionCodeModel.insertMany(reqPayload);
         return response;
@@ -53,7 +53,7 @@ const getAllPromotionCodeData = async (reqPayload) => {
         const response = await promotionCodeModel.aggregate(aggregareQuery);
         const finalRes = {
             promocodeData: response,
-            totalCount: responseCount
+            totalCount: responseCount && responseCount.length ? responseCount[0]['total_data'] : 0
         };
         return finalRes;
     } catch (error) {
@@ -87,12 +87,15 @@ const editPromotionCodeData = async (reqPayload, promocodeId) => {
             return [];
         }
 
-        const promocodeDataExists = await promotionCodeModel.find({
-            promocodeName: reqPayload.promocodeName
-        });
-        if (promocodeDataExists.length > 0) {
-            return true;
+        if (reqPayload.oldPromocodeName != reqPayload.promocodeName) {
+            const promocodeDataExists = await promotionCodeModel.find({
+                promocodeName: reqPayload.promocodeName
+            });
+            if (promocodeDataExists.length > 0) {
+                return true;
+            }
         }
+
         const response = await promotionCodeModel.findOneAndUpdate({
             promocodeId: promocodeId,
             deleted: false,
@@ -150,7 +153,7 @@ const getPipelineQuery = async (promocodeId, reqPayload = null) => {
     let aggregatePipeline = [];
     let searchQuery = [];
     let sortPromotionCode = {
-        promocodeId: 1
+        promocodeId: -1
     };
 
     let matchQuery = {

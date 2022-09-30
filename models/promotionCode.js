@@ -4,7 +4,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 require('mongoose-long')(mongoose);
-const SchemaTypes = mongoose.Schema.Types;
 const {
     autoIncrement
 } = require('../lib/utils');
